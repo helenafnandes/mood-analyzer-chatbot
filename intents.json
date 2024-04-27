@@ -1,0 +1,74 @@
+{
+  "intents": [
+    {
+      "tag": "greetings",
+      "patterns": ["hello", "hey", "hi", "good day", "what's up", "how are you"],
+      "responses": ["Hello!", "Hey!", "Welcome to our bakery! How can I assist you today?"]
+    },
+    {
+      "tag": "menu",
+      "patterns": ["what do you offer?", "what's on the menu?", "do you have any specialties?"],
+      "responses": ["We offer a variety of delicious baked goods including bread, pastries, cakes, and more. Feel free to explore our menu!"]
+    },
+    {
+      "tag": "order",
+      "patterns": ["I'd like to place an order", "how can I order?", "can I order online?"],
+      "responses": ["Sure! You can place an order by visiting our website or giving us a call. Let me know if you need any assistance."]
+    },
+    {
+      "tag": "specials",
+      "patterns": ["do you have any specials?", "what's on special today?", "any discounts or promotions?"],
+      "responses": ["Yes, we have daily specials and promotions. Check our website or social media for the latest updates."]
+    },
+    {
+      "tag": "hours",
+      "patterns": ["what are your hours?", "when are you open?", "what time do you close?"],
+      "responses": ["We're open from [insert opening time] to [insert closing time] every day. We look forward to seeing you!"]
+    },
+    {
+      "tag": "location",
+      "patterns": ["where are you located?", "what's your address?", "how do I find you?"],
+      "responses": ["Our bakery is located at [insert address]. You can find us easily on the map."]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["thank you", "thanks a lot", "much appreciated"],
+      "responses": ["You're welcome! If you have any more questions, feel free to ask."]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["goodbye", "bye", "see you later"],
+      "responses": ["Goodbye! Have a wonderful day!"]
+    },
+    {
+      "tag": "cake_options",
+      "patterns": ["what types of cakes do you offer?", "do you have cake options?", "can I see your cake selection?"],
+      "responses": ["We offer a variety of cakes, including chocolate, vanilla, red velvet, carrot, and more. Let me know if you'd like to see our cake menu."]
+    },
+    {
+      "tag": "custom_cake",
+      "patterns": ["can I customize a cake?", "do you make custom cakes?", "can I request a special cake design?"],
+      "responses": ["Yes, we offer custom cake designs! Let us know your preferences, and we'll create a unique cake just for you."]
+    },
+    {
+      "tag": "cake_order_process",
+      "patterns": ["how do I order a cake?", "what's the process for ordering a cake?", "can I order a cake online?"],
+      "responses": ["To order a cake, you can visit our website and fill out the cake order form, or you can call us directly to place your order. We'll guide you through the process."]
+    },
+    {
+      "tag": "cake_delivery",
+      "patterns": ["do you offer cake delivery?", "can I have the cake delivered?", "what's your delivery policy?"],
+      "responses": ["Yes, we offer cake delivery services. Delivery fees may apply depending on the distance. Please provide your location, and we'll provide more information."]
+    },
+    {
+      "tag": "cake_pickup",
+      "patterns": ["can I pick up the cake myself?", "is cake pickup available?", "what are the pickup options?"],
+      "responses": ["Certainly! You can pick up the cake yourself at our bakery. Just let us know your preferred pickup date and time."]
+    },
+    {
+      "tag": "cake_price",
+      "patterns": ["how much does a cake cost?", "what are your cake prices?", "can I get a price estimate for a cake?"],
+      "responses": ["Cake prices vary depending on size, flavor, and design. Please contact us for a personalized price quote based on your preferences."]
+    }
+  ]
+}
