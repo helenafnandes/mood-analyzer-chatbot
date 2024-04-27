@@ -3,51 +3,81 @@ import json
 import pickle
 import numpy as np
 import tensorflow as tf
-
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-# 1) loading and formatting data from intents.json for training
+# Constants
+INTENTS_FILE = 'intents.json'
+ALL_PATTERNS_WORDS_FILE = 'allPatternsWords.pkl'
+ALL_INTENTS_TAGS_FILE = 'allIntentsTags.pkl'
+MODEL_FILE = 'chatbot_model.keras'
+#MODEL_FILE = 'chatbot_model.h5'
 
+
+# Function to load intents data
+def load_intents(file_path):
+    with open(file_path, 'r') as file:
+        return json.load(file)
+
+
+# Function to preprocess patterns
+def preprocess_patterns(patterns, lemmatizer, ignore_letters):
+    pattern_words = []
+    data_pattern_tag_pairs = []
+
+    for intent in patterns['intents']:
+        for pattern in intent['patterns']:
+            pattern_words.extend(nltk.word_tokenize(pattern))
+            data_pattern_tag_pairs.append((nltk.word_tokenize(pattern), intent['tag']))
+
+    pattern_words = [lemmatizer.lemmatize(word.lower()) for word in pattern_words if word not in ignore_letters]
+    pattern_words = sorted(set(pattern_words))
+
+    all_intents_tags = sorted(set(pair[1] for pair in data_pattern_tag_pairs))
+
+    return pattern_words, data_pattern_tag_pairs, all_intents_tags
+
+
+# Function to save data to binary files
+def save_to_pickle(data, file_path):
+    with open(file_path, 'wb') as file:
+        pickle.dump(data, file)
+
+
+# Function to build neural network model
+def build_model(input_shape, output_shape):
+    model = tf.keras.Sequential([
+        tf.keras.layers.Dense(128, input_shape=input_shape, activation='relu'),
+        tf.keras.layers.Dropout(0.5),
+        tf.keras.layers.Dense(64, activation='relu'),
+        tf.keras.layers.Dropout(0.5),
+        tf.keras.layers.Dense(output_shape, activation='softmax')
+    ])
+    sgd = tf.keras.optimizers.SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
+    model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+    return model
+
+
+# Load intents data
+intents_data = load_intents(INTENTS_FILE)
+
+# Preprocess patterns
 lemmatizer = WordNetLemmatizer()
+ignore_letters = ['?', '!', '.', ',']
+all_patterns_words, data_pattern_tag_pairs, all_intents_tags = preprocess_patterns(intents_data, lemmatizer,
+                                                                                   ignore_letters)
 
-intents = json.loads(open('intents.json').read())
+# Save data to binary files
+save_to_pickle(all_patterns_words, ALL_PATTERNS_WORDS_FILE)
+save_to_pickle(all_intents_tags, ALL_INTENTS_TAGS_FILE)
 
-all_patterns_words = []
-all_intents_tags = []
-data_pattern_tag_pairs = []
-ignoreLetters = ['?', '!', '.', ',']
-
-for intent in intents['intents']:
-    for pattern in intent['patterns']:
-        pattern_words = nltk.word_tokenize(pattern)
-        all_patterns_words.extend(pattern_words)
-        data_pattern_tag_pairs.append((pattern_words, intent['tag']))
-        if intent['tag'] not in all_intents_tags:
-            all_intents_tags.append(intent['tag'])
-
-
-
-all_patterns_words = [lemmatizer.lemmatize(word) for word in all_patterns_words if word not in ignoreLetters]
-all_patterns_words = sorted(set(all_patterns_words))  # "set" to eliminate duplicates
-
-all_intents_tags = sorted(set(all_intents_tags))
-
-# 2) saving training data into binary files
-
-pickle.dump(all_patterns_words, open('allPatternsWords.pkl', 'wb'))
-pickle.dump(all_intents_tags, open('allIntentsTags.pkl', 'wb'))
-
-
-# 3) pre-processing training data
-
+# Preprocess training data
 training_data = []
 empty_output_vector = [0] * len(all_intents_tags)
 
 for pair in data_pattern_tag_pairs:
     pattern_words_bag = []
-    data_pattern_words = pair[0]
-    data_pattern_words = [lemmatizer.lemmatize(word.lower()) for word in data_pattern_words]
+    data_pattern_words = [lemmatizer.lemmatize(word.lower()) for word in pair[0]]
     for word in all_patterns_words:
         pattern_words_bag.append(1) if word in data_pattern_words else pattern_words_bag.append(0)
 
@@ -61,18 +91,10 @@ training_data = np.array(training_data)
 trainX = training_data[:, :len(all_patterns_words)]
 trainY = training_data[:, len(all_patterns_words):]
 
-# build neural network model
-
-model = tf.keras.Sequential()
-model.add(tf.keras.layers.Dense(128, input_shape=(len(trainX[0]),), activation='relu'))
-model.add(tf.keras.layers.Dropout(0.5))
-model.add(tf.keras.layers.Dense(64, activation='relu'))
-model.add(tf.keras.layers.Dropout(0.5))
-model.add(tf.keras.layers.Dense(len(trainY[0]), activation='softmax'))
-
-sgd = tf.keras.optimizers.SGD(learning_rate=0.01, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
-
+# Build and train neural network model
+model = build_model(input_shape=(len(trainX[0]),), output_shape=len(trainY[0]))
 model.fit(trainX, trainY, epochs=200, batch_size=5, verbose=1)
-model.save('chatbot_model.h5')
-print('Done')
+
+# Save model
+model.save(MODEL_FILE)
+print('Model saved successfully.')
