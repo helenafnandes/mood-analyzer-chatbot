@@ -6,6 +6,7 @@ import tensorflow as tf
 import nltk
 from nltk.stem import WordNetLemmatizer
 
+
 # Constants
 INTENTS_FILE = 'intents.json'
 ALL_PATTERNS_WORDS_FILE = 'allPatternsWords.pkl'
@@ -96,5 +97,5 @@ model = build_model(input_shape=(len(trainX[0]),), output_shape=len(trainY[0]))
 model.fit(trainX, trainY, epochs=200, batch_size=5, verbose=1)
 
 # Save model
-model.save(MODEL_FILE)
+tf.keras.models.save_model(model, MODEL_FILE)
 print('Model saved successfully.')
