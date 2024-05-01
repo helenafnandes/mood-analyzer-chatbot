@@ -37,7 +37,7 @@
     },
     {
       "tag": "goodbye",
-      "patterns": ["goodbye", "bye", "see you later"],
+      "patterns": ["goodbye", "bye", "see you later", "exit", "stop"],
       "responses": ["Goodbye! Have a wonderful day!"]
     },
     {

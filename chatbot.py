@@ -6,12 +6,14 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 import tensorflow as tf
 
+
 # Constants
 INTENTS_FILE = 'intents.json'
 WORDS_FILE = 'allPatternsWords.pkl'
 CLASSES_FILE = 'allIntentsTags.pkl'
 MODEL_FILE = 'chatbot_model.keras'
 ERROR_THRESHOLD = 0.25
+
 
 lemmatizer = WordNetLemmatizer()
 
@@ -44,20 +46,35 @@ def bag_of_words(sentence, words):
     return np.array(bag)
 
 # Predict class/intent
-def predict_class(sentence, model):
+def predict_intents(sentence, model):
     bow = bag_of_words(sentence, words)
     res = model.predict(np.array([bow]))[0]
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
     results.sort(key=lambda x: x[1], reverse=True)
     return [{'intent': classes[r[0]], 'probability': str(r[1])} for r in results]
 
+def predict_top_intent(sentence, model):
+    bow = bag_of_words(sentence, words)
+    res = model.predict(np.array([bow]))[0]
+    results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
+    results.sort(key=lambda x: x[1], reverse=True)
+    sentence_intents = [{'intent': classes[r[0]], 'probability': str(r[1])} for r in results]
+    top_intent_tag = sentence_intents[0]['intent']
+    return top_intent_tag
+
 # Get response
 def get_response(sentence, intents_data):
-    sentence_intents = predict_class(sentence, model)
+    sentence_intents = predict_intents(sentence, model)
     top_intent_tag = sentence_intents[0]['intent']
     responses = [intent['responses'] for intent in intents_data['intents'] if intent['tag'] == top_intent_tag]
     flat_responses = [response for sublist in responses for response in sublist]
     return random.choice(flat_responses)
+
+def get_response_by_intent(sentence_intent, intents_data):
+    responses = [intent['responses'] for intent in intents_data['intents'] if intent['tag'] == sentence_intent]
+    flat_responses = [response for sublist in responses for response in sublist]
+    return random.choice(flat_responses)
+
 
 # Main function
 def main():
@@ -69,11 +86,15 @@ def main():
     classes = load_data(CLASSES_FILE)
     model = load_model(MODEL_FILE)
 
+    while True:
+        # Get and print response
+        sentence = input("You: ")
+        sentence_top_intent = predict_top_intent(sentence, model)
+        response = get_response_by_intent(sentence_top_intent, intents_data)
+        print("Bot: ", response)
+        if sentence_top_intent == 'goodbye':
+            break
 
-    # Get and print response
-    sentence = input("Enter your message: ")
-    response = get_response(sentence, intents_data)
-    print(response)
 
 if __name__ == "__main__":
     main()
