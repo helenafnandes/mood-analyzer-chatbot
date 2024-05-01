@@ -1,3 +1,7 @@
+# Suppress TensorFlow's log messages for cleaner chatbot interaction
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Suppress TensorFlow's log messages
+
 import random
 import json
 import pickle
@@ -14,6 +18,7 @@ CLASSES_FILE = 'allIntentsTags.pkl'
 MODEL_FILE = 'chatbot_model.keras'
 ERROR_THRESHOLD = 0.25
 
+tf.keras.utils.disable_interactive_logging()
 
 lemmatizer = WordNetLemmatizer()
 
