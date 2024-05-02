@@ -68,5 +68,5 @@ This project was made possible because of some awesome content I used to learn a
 - **"Intelligent AI Chatbot in Python"**: Created by NeuralNine. Available on YouTube at [this link](https://www.youtube.com/watch?v=1lwddP0KUEg&t=1522s).
 - **"What is Sentiment Analysis?"**: On aws.amazon.com, available at [this link](https://aws.amazon.com/what-is/sentiment-analysis/?nc1=h_ls).
 
-### Contributions and Suggestions
+## Contributions and Suggestions
 Suggestions for improvements or additional features are much appreciated! Contributions to the project are also welcomed. Please feel free to fork the repository, make changes, and submit pull requests.
