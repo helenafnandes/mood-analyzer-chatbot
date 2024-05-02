@@ -16,6 +16,7 @@ def suggest_conversational(word):
         "lemme": "let me",
         "gimme": "give me",
         "nite": "night",
+        "wnt": "want",
         # Add more conversational word suggestions as needed
     }
 
@@ -26,11 +27,20 @@ def suggest_conversational(word):
         return word
 
 def spell_check(text):
-    text = suggest_conversational(text)
-    # Create a TextBlob object
-    blob = TextBlob(text)
+    # Split the text into individual words
+    words = text.split()
 
-    # Get a list of words with spelling corrections
+    corrected_words = []
+    for word in words:
+        # Apply conversational word correction
+        corrected_word = suggest_conversational(word)
+        corrected_words.append(corrected_word)
+
+    # Join the corrected words back into a sentence
+    corrected_text = ' '.join(corrected_words)
+
+    # Perform general spell check using TextBlob
+    blob = TextBlob(corrected_text)
     corrected = blob.correct()
 
     return str(corrected)
