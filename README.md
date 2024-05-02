@@ -4,9 +4,11 @@ This project implements a chatbot tailored for a bakery, capable of engaging in 
 
 ## Functionalities
 
-1. **Spell Checking**: The chatbot corrects spelling errors in user input to improve understanding and ensure accurate responses.
+1. ✅**Spell Checking**: The chatbot corrects spelling errors in user input to improve understanding and ensure accurate responses.
 
-2. **Sentiment Analysis**: Integrated sentiment analysis allows the chatbot to gauge the sentiment of user inputs. In case of negative sentiment, appropriate actions are taken to address the user's concern and escalate it to the bakery staff if needed.
+2. ✅**Sentiment Analysis**: Integrated sentiment analysis allows the chatbot to gauge the sentiment of user inputs. In case of negative sentiment, appropriate actions are taken to address the user's concern and escalate it to the bakery staff if needed.
+
+3. 🔳**Web-Based Interface for Tests**: Develop a user-friendly web interface enabling easy viewing and testing of the chatbot.
 
 ## How to Use
 
