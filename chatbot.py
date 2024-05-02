@@ -10,6 +10,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 import tensorflow as tf
 
+from sentiment_analysis import analyze_sentiment
 
 # Constants
 INTENTS_FILE = 'intents.json'
@@ -94,11 +95,17 @@ def main():
     while True:
         # Get and print response
         sentence = input("You: ")
-        sentence_top_intent = predict_top_intent(sentence, model)
-        response = get_response_by_intent(sentence_top_intent, intents_data)
-        print("Bot: ", response)
-        if sentence_top_intent == 'goodbye':
+        sentiment = analyze_sentiment(sentence)
+        if sentiment == 'Negative':
+            print("Your satisfaction is our priority. I'll make sure to escalate your concern to one of our "
+                  "attendants, who will assist you promptly. Please hang tight; we'll have someone with you shortly.")
             break
+        else:
+            sentence_top_intent = predict_top_intent(sentence, model)
+            response = get_response_by_intent(sentence_top_intent, intents_data)
+            print("Bot: ", response)
+            if sentence_top_intent == 'goodbye':
+                break
 
 
 if __name__ == "__main__":
