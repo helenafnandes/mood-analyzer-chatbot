@@ -11,6 +11,7 @@ from nltk.stem import WordNetLemmatizer
 import tensorflow as tf
 
 from sentiment_analysis import analyze_sentiment
+from spell_corrector import spell_check
 
 # Constants
 INTENTS_FILE = 'intents.json'
@@ -86,6 +87,10 @@ def get_response_by_intent(sentence_intent, intents_data):
 def main():
     global lemmatizer, words, classes, model
 
+    print("Welcome to our bakery chatbot! 🍰🍩"
+          "I'm here to assist you with any questions you have about our delicious treats and services. Feel free to ask me anything, from information about our products to placing an order."
+          "Let's get started! How can I assist you today?")
+
     # Load data
     intents_data = load_intents(INTENTS_FILE)
     words = load_data(WORDS_FILE)
@@ -95,6 +100,7 @@ def main():
     while True:
         # Get and print response
         sentence = input("You: ")
+        sentence = spell_check(sentence)
         sentiment = analyze_sentiment(sentence)
         if sentiment == 'Negative':
             print("Your satisfaction is our priority. I'll make sure to escalate your concern to one of our "
