@@ -1,4 +1,4 @@
-# Bakery Chatbot
+# Mood Analyzer Chatbot
 
 This project implements a chatbot tailored for a bakery, capable of engaging in conversation with users to provide information about the bakery's products and services, as well as assist with placing orders. The chatbot utilizes several natural language processing (NLP) techniques including spell checking and sentiment analysis to enhance user experience and interaction quality.
 
