@@ -49,6 +49,7 @@ def bag_of_words(sentence, words):
     bag = [0] * len(words)
     for i, word in enumerate(words):
         if word in sentence_words:
+            
             bag[i] = 1
     return np.array(bag)
 
