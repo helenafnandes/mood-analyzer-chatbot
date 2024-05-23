@@ -18,7 +18,7 @@
     {
       "tag": "specials",
       "patterns": ["do you have any specials?", "what's on special today?", "any discounts or promotions?"],
-      "responses": ["Yes, we have daily specials and promotions. Check our website or social media for the latest updates."]
+      "responses": ["Yes, we have daily specials and promotions. Please check our website or social media for the latest updates."]
     },
     {
       "tag": "hours",
