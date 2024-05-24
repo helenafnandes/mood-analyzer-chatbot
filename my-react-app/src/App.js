@@ -105,6 +105,9 @@ function App() {
           ))}
         </div>
       </div>
+    <div class="watermark">
+    <a href="https://github.com/helenafnandes" target="_blank">Made by Helena</a>
+  </div>
     </div>
   );
 }

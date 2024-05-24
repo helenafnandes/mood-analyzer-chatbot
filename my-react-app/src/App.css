@@ -100,3 +100,19 @@ button:hover {
 .suggestions-buttons button:hover{
     background-color: rgb(255,140,0);
 }
+
+.watermark {
+    font-size: small;
+    font-family: monospace;
+    margin: 10px;
+}
+
+.watermark a {
+  color: #555;
+  text-decoration: underline;
+}
+
+.watermark a:hover {
+
+  color: #000;
+}
