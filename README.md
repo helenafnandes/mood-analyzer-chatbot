@@ -8,20 +8,54 @@ This project implements a chatbot tailored for a bakery, capable of engaging in 
 
 2. ✅**Sentiment Analysis**: Integrated sentiment analysis allows the chatbot to gauge the sentiment of user inputs. In case of negative sentiment, appropriate actions are taken to address the user's concern and escalate it to the bakery staff if needed.
 
-3. 🔳**Web-Based Interface for Tests**: Develop a user-friendly web interface enabling easy viewing and testing of the chatbot.
+3. ✅**Web-Based Interface for Tests**: A user-friendly web interface enabling easy viewing and testing of the chatbot.
+
+4. 🔳**Enhanced Spell Checking**: Implement spell checking functionality that leverages keyboard configuration for improved accuracy and efficiency.
 
 ## How to Use
 
+### Live Demonstration
+
+You can experience the chatbot through a live web application by following this [link](#).
+
+### Local Installation
+
+If you prefer to run the chatbot on your own machine, you can download the chatbot folder and set it up locally.
+
+To download the necessary files, run the following command in your terminal:
+
+```bash
+git clone https://github.com/helenafnandes/mood-analyzer-chatter-bot.git --depth 1 --filter=blob:none --sparse && cd mood-analyzer-chatter-bot && git sparse-checkout init --cone && git sparse-checkout set chatbot
+```
+
+Then, follow these instructions:
+0. **Personalizing and Training the Chatbot**
+   - **Personalization**: Modify the contents of the `intents.json` and `messages.json` files located in the `personalization_files` directory to tailor the chatbot to your context and specific use cases. Customize messages in the `messages.json` file to personalize responses.
+   - **Training**: Execute the `training.py` script to train the chatbot.
+
 1. **Running the Chatbot**:
-    - Run the `chatbot.py` script to start the chatbot.
-    - Upon initialization, the chatbot welcomes the user and awaits input.
+   - Launch the chatbot by running the `chatbot.py` script.
+   - Upon initialization, the chatbot greets the user and awaits input.
 
 2. **Interacting with the Chatbot**:
-    - Users can type messages or questions related to the bakery's products, services, or any other inquiries.
-    - The chatbot responds accordingly, providing relevant information or assistance.
+   - Users can type messages or questions related to the bakery's products, services, or any other inquiries.
+   - The chatbot responds accordingly, providing relevant information or assistance.
 
 3. **Ending the Chat**:
-    - To end the chat, simply type "goodbye" or any other exit keyword defined in the intents.
+   - To conclude the conversation, simply type "goodbye" or any other exit keyword as defined in the intents.
+
+## Use Example
+
+The bot will analyze the intents of the user's message and respond accordingly
+
+Example:
+```python
+Welcome to our bakery chatbot! 🍰🍩 I'm here to assist you with any questions you have about our delicious treats and services. Feel free to ask me anything, from information about our products to placing an order. Let's get started! How can I assist you today?
+You: hello! what are your cake options?
+Bot: Our cake selection includes flavors like chocolate, vanilla, red velvet, carrot, and lemon drizzle. Feel free to ask for more details or suggestions!
+You: awesome, thanks
+Bot: No problem at all! We're here to help if you have any other questions or need suggestions.
+```
 
 ## Spell Checking
 
