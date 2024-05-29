@@ -7,7 +7,11 @@ import nltk
 import tensorflow as tf
 from nltk.stem import WordNetLemmatizer
 
+from sentiment_analysis import analyze_sentiment
+from spell_corrector import spell_check
+
 tf.keras.utils.disable_interactive_logging()
+
 
 class Chatbot:
     def __init__(self):
@@ -17,7 +21,7 @@ class Chatbot:
         self.CLASSES_FILE = 'allIntentsTags.pkl'
         self.MODEL_FILE = 'chatbot_model.keras'
         self.MESSAGES_FILE = 'messages.json'
-        self.ERROR_THRESHOLD = 0.50
+        self.ERROR_THRESHOLD = 0.60
         self.lemmatizer = WordNetLemmatizer()
         self.words = None
         self.classes = None
@@ -56,22 +60,23 @@ class Chatbot:
         results = [[i, r] for i, r in enumerate(res)]
         results.sort(key=lambda x: x[1], reverse=True)
         if results[0][1] > self.ERROR_THRESHOLD:
+            print(results[0][1], self.classes[results[0][0]], results[1][1], self.classes[results[1][0]], results[2][1], self.classes[results[2][0]])
             return self.classes[results[0][0]]
         else:
             return "no_match"
 
     def get_response_by_intent(self, sentence_intent):
         if sentence_intent == "no_match":
-            return self.messages.get('no_match', "Sorry, I didn't understand what you said. Could you please rephrase or ask something else?")
+            return self.messages.get('no_match', "Default no-match message not found in JSON file")
         responses = [intent['responses'] for intent in self.intents_data['intents'] if intent['tag'] == sentence_intent]
         flat_responses = [response for sublist in responses for response in sublist]
         return random.choice(flat_responses)
 
     def get_welcome_message(self):
-        return self.messages.get('welcome', "Welcome to our bakery chatbot! 🍰🍩 I'm here to assist you with any questions you have about our delicious treats and services. Feel free to ask me anything, from information about our products to placing an order. Let's get started! How can I assist you today?")
+        return self.messages.get('welcome', "Default welcome message not found in JSON file")
 
     def get_negative_intent_response(self):
-        return self.messages.get('negative_intent', "Your satisfaction is our priority. I'll make sure to escalate your concern to one of our attendants, who will assist you promptly. Please hang tight; we'll have someone with you shortly.")
+        return self.messages.get('negative_intent', "Default negative message response not found in JSON file")
 
     '''
     def send_message(self, message):
@@ -86,11 +91,20 @@ class Chatbot:
         sentence_top_intent = self.predict_top_intent(message)
         return self.get_response_by_intent(sentence_top_intent)
 
+
 # Usage
+
 if __name__ == "__main__":
     bot = Chatbot()
     print(bot.get_welcome_message())
     while True:
         message = input("You: ")
-        response = bot.send_message(message)
+        message = spell_check(message)
+        sentiment = analyze_sentiment(message)
+        if(sentiment == 'Negative'):
+            response = bot.get_negative_intent_response()
+        else:
+            response = bot.send_message(message)
         print("Bot:", response)
+        if(bot.predict_top_intent(message) == 'goodbye'):
+            break
