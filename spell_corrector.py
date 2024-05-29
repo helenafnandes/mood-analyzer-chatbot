@@ -4,8 +4,8 @@ def suggest_conversational(word):
     # Define conversational word suggestions
     conversational_words = {
         "helo": "hello",
-        "hi": "hello",
-        "hey": "hello",
+        "hi": "hi",
+        "hey": "hey",
         "howdy": "hello",
         "gret": "great",
         "good": "great",
@@ -39,7 +39,8 @@ def suggest_conversational(word):
         "theres": "there's",
         "cud": "could",
         "could": "could",
-        "What's": "What's"
+        "What's": "What's",
+        "What": "What",
         # Add more conversational word suggestions as needed
     }
 
