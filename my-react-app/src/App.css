@@ -70,6 +70,7 @@ button {
   background-color: #007bff;
   color: #fff;
   cursor: pointer;
+  margin: 0px 0px 0px 5px;
 }
 
 .suggestions-container {
@@ -90,7 +91,6 @@ button {
 }
 .suggestions-buttons button{
     background-color: #FFA500;
-    margin: 0px 5px;
 }
 
 button:hover {
