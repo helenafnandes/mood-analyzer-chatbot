@@ -28,8 +28,9 @@ This project implements a chatbot tailored for a bakery, capable of engaging in 
 The spell checking functionality is implemented in the `spell_corrector.py` module using TextBlob. It corrects spelling errors in user input, ensuring better comprehension by the chatbot.
 
 Example:
+
 ```python
-from spell_corrector import spell_check
+from chatbot.chatbot import spell_check
 
 input_text = "I wnt to oreder a cak"
 corrected_text = spell_check(input_text)
@@ -42,8 +43,9 @@ print(corrected_text)  # "i want to order a can"
 Sentiment analysis is performed using spaCy and VADER (Valence Aware Dictionary and sEntiment Reasoner). It allows the chatbot to detect the sentiment of user inputs and take appropriate actions, such as addressing negative sentiment.
 
 Example:
+
 ```python
-from sentiment_analysis import analyze_sentiment
+from chatbot.chatbot import analyze_sentiment
 
 text = "I'm very satisfied with your service."
 sentiment = analyze_sentiment(text)

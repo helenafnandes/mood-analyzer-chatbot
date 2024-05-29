@@ -16,11 +16,11 @@ tf.keras.utils.disable_interactive_logging()
 class Chatbot:
     def __init__(self):
         os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-        self.INTENTS_FILE = 'intents.json'
-        self.WORDS_FILE = 'allPatternsWords.pkl'
-        self.CLASSES_FILE = 'allIntentsTags.pkl'
-        self.MODEL_FILE = 'chatbot_model.keras'
-        self.MESSAGES_FILE = 'messages.json'
+        self.INTENTS_FILE = '../personalization_files/intents.json'
+        self.WORDS_FILE = './training_generated_files/allPatternsWords.pkl'
+        self.CLASSES_FILE = './training_generated_files/allIntentsTags.pkl'
+        self.MODEL_FILE = './training_generated_files/chatbot_model.keras'
+        self.MESSAGES_FILE = '../personalization_files/messages.json'
         self.ERROR_THRESHOLD = 0.60
         self.lemmatizer = WordNetLemmatizer()
         self.words = None
@@ -60,7 +60,7 @@ class Chatbot:
         results = [[i, r] for i, r in enumerate(res)]
         results.sort(key=lambda x: x[1], reverse=True)
         if results[0][1] > self.ERROR_THRESHOLD:
-            print(results[0][1], self.classes[results[0][0]], results[1][1], self.classes[results[1][0]], results[2][1], self.classes[results[2][0]])
+            # print(results[0][1], self.classes[results[0][0]], results[1][1], self.classes[results[1][0]], results[2][1], self.classes[results[2][0]])
             return self.classes[results[0][0]]
         else:
             return "no_match"

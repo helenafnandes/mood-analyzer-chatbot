@@ -1,7 +1,8 @@
 # app.py
-from flask import Flask, jsonify, request
-from chatbot import Chatbot
 
+from flask import Flask, jsonify, request
+
+from chatbot import Chatbot
 from sentiment_analysis import analyze_sentiment
 from spell_corrector import spell_check
 
@@ -21,7 +22,10 @@ def add_cors_headers(response):
 # Chatbot route
 @app.route('/api/chatbot', methods=['POST'])
 def chatbot_endpoint():
-    data = request.json
+    data = request.get_json(force=True)
+    if 'message' not in data or not isinstance(data['message'], str):
+        return jsonify({'error': 'Invalid request format'}), 400
+
     message = data['message'].lower()
     corrected_message = spell_check(message)
     sentiment = analyze_sentiment(corrected_message)
@@ -40,10 +44,11 @@ def chatbot_endpoint():
 def welcome_message():
     return jsonify({"message": chatbot.get_welcome_message()})
 
+
 @app.route('/api/negative_intent_response', methods=['GET'])
 def negative_intent_message():
     return jsonify({"message": chatbot.get_negative_intent_response()})
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

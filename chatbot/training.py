@@ -8,11 +8,11 @@ from nltk.stem import WordNetLemmatizer
 
 
 # Constants
-INTENTS_FILE = 'intents.json'
-ALL_PATTERNS_WORDS_FILE = 'allPatternsWords.pkl'
-ALL_INTENTS_TAGS_FILE = 'allIntentsTags.pkl'
-MODEL_FILE = 'chatbot_model.keras'
-#MODEL_FILE = 'chatbot_model.h5'
+INTENTS_FILE = '../personalization_files/intents.json'
+ALL_PATTERNS_WORDS_FILE = './training_generated_files/allPatternsWords.pkl'
+ALL_INTENTS_TAGS_FILE = './training_generated_files/allIntentsTags.pkl'
+MODEL_FILE = './training_generated_files/chatbot_model.keras'
+#MODEL_FILE = './training_generated_files/chatbot_model.h5'
 
 
 # Function to load intents data
