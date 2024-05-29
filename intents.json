@@ -34,7 +34,7 @@
       "tag": "thanks",
       "patterns": [
         "thank you",
-        "thanks a lot",
+        "thanks lot",
         "much appreciated",
         "thanks"
       ],
@@ -46,11 +46,12 @@
     {
       "tag": "about_bot",
       "patterns": [
-        "what is a bot?",
+        "what is bot?",
         "who are you?",
-        "what do you do?",
+        "what do?",
         "tell me about yourself",
-        "what can you do?"
+        "what can you do?",
+        "help me"
       ],
       "responses": [
         "I'm a virtual assistant here to help you with information about our bakery, our menu, and placing orders. How can I assist you today?",
@@ -135,7 +136,8 @@
         "what do you offer?",
         "what's on the menu?",
         "do you have any specialties?",
-        "do you sell",
+        "what do you sell",
+        "sell",
         "menu",
         "specialties"
       ],
