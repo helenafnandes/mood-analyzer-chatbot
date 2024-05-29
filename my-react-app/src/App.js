@@ -1,25 +1,20 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
+import MessageList from './MessageList';
+import InputSection from './InputSection';
+import SuggestionSection from './SuggestionSection';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState([]);
   const [welcomeMessage, setWelcomeMessage] = useState('Loading...');
   const [loaded, setLoaded] = useState(false);
-  const endOfMessagesRef = useRef(null); // Ref para o elemento "sentinela"
 
   useEffect(() => {
     document.title = 'Bakery Bot';
     fetchWelcomeMessage();
   }, []);
-
-  useEffect(() => {
-    // Rolar para o elemento "sentinela" sempre que as mensagens forem atualizadas
-    if (endOfMessagesRef.current) {
-      endOfMessagesRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [messages]);
 
   const suggestions = [
     "Hello there!",
@@ -28,21 +23,17 @@ function App() {
   ];
 
   const fetchWelcomeMessage = () => {
-    const checkBackend = () => {
-      axios.get('http://localhost:5000/api/welcome_message')
-        .then(response => {
-          setWelcomeMessage(response.data.message);
-          setMessages([{ text: response.data.message, sender: 'bot_response' }]);
-          setLoaded(true);
-        })
-        .catch(error => {
-          console.error("There was an error!", error);
-          // Retry after 3 seconds
-          setTimeout(checkBackend, 3000);
-        });
-    };
-
-    checkBackend();
+    axios.get('http://localhost:5000/api/welcome_message')
+      .then(response => {
+        setWelcomeMessage(response.data.message);
+        setMessages([{ text: response.data.message, sender: 'bot_response' }]);
+        setLoaded(true);
+      })
+      .catch(error => {
+        console.error("There was an error!", error);
+        // Retry after 3 seconds
+        setTimeout(fetchWelcomeMessage, 3000);
+      });
   };
 
   const handleMessageSend = () => {
@@ -90,42 +81,15 @@ function App() {
 
   return (
     <div className="chat-container">
-      <div className="message-list">
-        {!loaded && <div className="message bot_response">Loading...</div>}
-        {loaded && messages.map((message, index) => (
-          <div
-            key={index}
-            className={`message ${message.sender}`}
-          >
-            {message.text.split('\n').map((line, i) => (
-              <span key={i}>
-                {line}
-                <br />
-              </span>
-            ))}
-          </div>
-        ))}
-        <div ref={endOfMessagesRef} /> {/* Elemento "sentinela" */}
-      </div>
-      <div className="input-container">
-        <input
-          type="text"
-          placeholder="Type your message here..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyPress={handleKeyPress} // Adiciona o manipulador de evento para pressionar a tecla
-        />
-        <button onClick={handleMessageSend}>Send</button>
-        <button onClick={handleNewChat}>New Chat</button>
-      </div>
-      <div className="suggestions-container">
-        <div className="suggestions-title">SUGGESTIONS</div>
-        <div className="suggestions-buttons">
-          {suggestions.map((suggestion, index) => (
-            <button key={index} onClick={() => handleSuggestion(suggestion)}>{suggestion}</button>
-          ))}
-        </div>
-      </div>
+      <MessageList messages={messages} loaded={loaded} />
+      <InputSection
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        handleMessageSend={handleMessageSend}
+        handleKeyPress={handleKeyPress}
+        handleNewChat={handleNewChat}
+      />
+      <SuggestionSection suggestions={suggestions} handleSuggestion={handleSuggestion} />
       <div className="watermark">
         <a href="https://github.com/helenafnandes" target="_blank">Made by Helena</a>
       </div>
