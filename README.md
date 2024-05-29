@@ -29,6 +29,7 @@ git clone https://github.com/helenafnandes/mood-analyzer-chatter-bot.git --depth
 ```
 
 Then, follow these instructions:
+
 0. **Personalizing and Training the Chatbot**
    - **Personalization**: Modify the contents of the `intents.json` and `messages.json` files located in the `personalization_files` directory to tailor the chatbot to your context and specific use cases. Customize messages in the `messages.json` file to personalize responses.
    - **Training**: Execute the `training.py` script to train the chatbot.
@@ -38,18 +39,20 @@ Then, follow these instructions:
    - Upon initialization, the chatbot greets the user and awaits input.
 
 2. **Interacting with the Chatbot**:
-   - Users can type messages or questions related to the bakery's products, services, or any other inquiries.
+   - With the original intents.json and messages.json files, users can type messages or questions related to the bakery's products, services, or any other inquiries.
    - The chatbot responds accordingly, providing relevant information or assistance.
 
 3. **Ending the Chat**:
    - To conclude the conversation, simply type "goodbye" or any other exit keyword as defined in the intents.
+      - If there is a "goodbye" intent on the intents.json file, the bot detects it and stops the application.
 
 ## Use Example
 
 The bot will analyze the intents of the user's message and respond accordingly
 
 Example:
-```python
+
+```bash
 Welcome to our bakery chatbot! 🍰🍩 I'm here to assist you with any questions you have about our delicious treats and services. Feel free to ask me anything, from information about our products to placing an order. Let's get started! How can I assist you today?
 You: hello! what are your cake options?
 Bot: Our cake selection includes flavors like chocolate, vanilla, red velvet, carrot, and lemon drizzle. Feel free to ask for more details or suggestions!
