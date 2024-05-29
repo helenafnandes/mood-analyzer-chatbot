@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -6,11 +6,20 @@ function App() {
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState([]);
   const [welcomeMessage, setWelcomeMessage] = useState('Loading...');
-  const [loaded, setLoaded] = useState(false); // New state variable
+  const [loaded, setLoaded] = useState(false);
+  const endOfMessagesRef = useRef(null); // Ref para o elemento "sentinela"
 
   useEffect(() => {
+    document.title = 'Bakery Bot';
     fetchWelcomeMessage();
   }, []);
+
+  useEffect(() => {
+    // Rolar para o elemento "sentinela" sempre que as mensagens forem atualizadas
+    if (endOfMessagesRef.current) {
+      endOfMessagesRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   const suggestions = [
     "Hello there!",
@@ -23,7 +32,7 @@ function App() {
       .then(response => {
         setWelcomeMessage(response.data.message);
         setMessages([{ text: response.data.message, sender: 'bot_response' }]);
-        setLoaded(true); // Set loaded to true when message is fetched
+        setLoaded(true);
       })
       .catch(error => {
         console.error("There was an error!", error);
@@ -40,7 +49,7 @@ function App() {
     axios.post('http://localhost:5000/api/chatbot', { message: inputValue })
       .then(response => {
         const botAnalysisMessage = {
-            text: `Corrected Message: ${response.data.corrected_message}\nSentiment: ${response.data.sentiment}`,
+            text: `Spell check: ${response.data.corrected_message}\nSentiment: ${response.data.sentiment}`,
             sender: 'bot_analysis'
         };
         const botResponseMessage = { text: response.data.response, sender: 'bot_response' };
@@ -64,10 +73,9 @@ function App() {
 
   const handleNewChat = () => {
     setMessages([]);
-    setLoaded(false); // Reset loaded state to false
+    setLoaded(false);
     fetchWelcomeMessage();
   };
-
 
   return (
     <div className="chat-container">
@@ -86,6 +94,7 @@ function App() {
             ))}
           </div>
         ))}
+        <div ref={endOfMessagesRef} /> {/* Elemento "sentinela" */}
       </div>
       <div className="input-container">
         <input
@@ -105,9 +114,9 @@ function App() {
           ))}
         </div>
       </div>
-    <div class="watermark">
-    <a href="https://github.com/helenafnandes" target="_blank">Made by Helena</a>
-  </div>
+      <div className="watermark">
+        <a href="https://github.com/helenafnandes" target="_blank">Made by Helena</a>
+      </div>
     </div>
   );
 }
