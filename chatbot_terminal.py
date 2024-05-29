@@ -100,7 +100,7 @@ def main():
 
     while True:
         # Get and print response
-        sentence = input("You: ")
+        sentence = input("You: ").lower()
         sentence = spell_check(sentence)
         sentiment = analyze_sentiment(sentence)
         if sentiment == 'Negative':
