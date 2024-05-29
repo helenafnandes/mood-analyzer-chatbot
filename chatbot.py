@@ -62,6 +62,9 @@ class Chatbot:
     def get_welcome_message(self):
         return "Welcome to our bakery chatbot! 🍰🍩 I'm here to assist you with any questions you have about our delicious treats and services. Feel free to ask me anything, from information about our products to placing an order. Let's get started! How can I assist you today?"
 
+    def get_negative_intent_response(self):
+        return "Your satisfaction is our priority. I'll make sure to escalate your concern to one of our attendants, who will assist you promptly. Please hang tight; we'll have someone with you shortly."
+
     '''
     def send_message(self, message):
         corrected_message = spell_check(message)

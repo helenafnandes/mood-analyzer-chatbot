@@ -22,12 +22,11 @@ def add_cors_headers(response):
 @app.route('/api/chatbot', methods=['POST'])
 def chatbot_endpoint():
     data = request.json
-    message = data['message']
+    message = data['message'].lower()
     corrected_message = spell_check(message)
     sentiment = analyze_sentiment(corrected_message)
     if sentiment == 'Negative':
-        response = ("Your satisfaction is our priority. I'll make sure to escalate your concern to one of our "
-                    "attendants, who will assist you promptly. Please hang tight; we'll have someone with you shortly.")
+        response = chatbot.get_negative_intent_response()
     else:
         response = chatbot.send_message(corrected_message)
     return jsonify({
@@ -40,6 +39,10 @@ def chatbot_endpoint():
 @app.route('/api/welcome_message', methods=['GET'])
 def welcome_message():
     return jsonify({"message": chatbot.get_welcome_message()})
+
+@app.route('/api/negative_intent_response', methods=['GET'])
+def negative_intent_message():
+    return jsonify({"message": chatbot.get_negative_intent_response()})
 
 
 if __name__ == '__main__':
