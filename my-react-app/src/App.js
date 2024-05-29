@@ -28,16 +28,21 @@ function App() {
   ];
 
   const fetchWelcomeMessage = () => {
-    axios.get('http://localhost:5000/api/welcome_message')
-      .then(response => {
-        setWelcomeMessage(response.data.message);
-        setMessages([{ text: response.data.message, sender: 'bot_response' }]);
-        setLoaded(true);
-      })
-      .catch(error => {
-        console.error("There was an error!", error);
-        setWelcomeMessage('Failed to fetch welcome message');
-      });
+    const checkBackend = () => {
+      axios.get('http://localhost:5000/api/welcome_message')
+        .then(response => {
+          setWelcomeMessage(response.data.message);
+          setMessages([{ text: response.data.message, sender: 'bot_response' }]);
+          setLoaded(true);
+        })
+        .catch(error => {
+          console.error("There was an error!", error);
+          // Retry after 3 seconds
+          setTimeout(checkBackend, 3000);
+        });
+    };
+
+    checkBackend();
   };
 
   const handleMessageSend = () => {
@@ -49,8 +54,8 @@ function App() {
     axios.post('http://localhost:5000/api/chatbot', { message: inputValue })
       .then(response => {
         const botAnalysisMessage = {
-            text: `Spell check: ${response.data.corrected_message}\nSentiment: ${response.data.sentiment}`,
-            sender: 'bot_analysis'
+          text: `Spell check: ${response.data.corrected_message}\nSentiment: ${response.data.sentiment}`,
+          sender: 'bot_analysis'
         };
         const botResponseMessage = { text: response.data.response, sender: 'bot_response' };
 
@@ -75,6 +80,12 @@ function App() {
     setMessages([]);
     setLoaded(false);
     fetchWelcomeMessage();
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleMessageSend();
+    }
   };
 
   return (
@@ -102,6 +113,7 @@ function App() {
           placeholder="Type your message here..."
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyPress={handleKeyPress} // Adiciona o manipulador de evento para pressionar a tecla
         />
         <button onClick={handleMessageSend}>Send</button>
         <button onClick={handleNewChat}>New Chat</button>
