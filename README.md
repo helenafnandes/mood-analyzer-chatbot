@@ -25,34 +25,48 @@ If you prefer to run the chatbot on your own machine, you can download the chatb
 To download the necessary files, run the following command in your terminal:
 
 ```bash
-git clone https://github.com/helenafnandes/mood-analyzer-chatter-bot.git --depth 1 --filter=blob:none --sparse && cd mood-analyzer-chatter-bot && git sparse-checkout init --cone && git sparse-checkout set chatbot
+git clone https://github.com/helenafnandes/mood-analyzer-chatter-bot.git
 ```
 
 Then, follow these instructions:
 
-0. **Personalizing and Training the Chatbot**
-   - **Personalization**: Modify the contents of the `intents.json` and `messages.json` files located in the `personalization_files` directory to tailor the chatbot to your context and specific use cases. Customize messages in the `messages.json` file to personalize responses.
-   - **Training**: Execute the `training.py` script to train the chatbot.
+0. **Optional: Personalizing and Training the Chatbot**
 
-1. **Running the Chatbot**:
+   - This step is optional. You can run the bot without personalization, and it will function with its pre-trained responses related to a bakery.
+   - **Personalization**: To tailor the chatbot to your specific context, modify the contents of the `intents.json` and `messages.json` files located in the `personalization_files` directory.
+   - **Training**: After personalization, execute the `training.py` script to train the chatbot with the updated data.
+
+1. **Running the Chatbot Locally**:
+
    - Launch the chatbot by running the `chatbot.py` script.
    - Upon initialization, the chatbot greets the user and awaits input.
 
-2. **Interacting with the Chatbot**:
+2. **Running the Chatbot via Flask API**:
+
+   - Launch the Flask API by running the `app.py` script.
+   - The API provides the following endpoints:
+     | Method | Route | Description |
+     |--------|------------------------------|------------------------------------------------------------|
+     | POST | /api/chatbot | Sends a message to the chatbot and receives a response. The JSON response includes the user's message corrected after spell check, the detected sentiment from the sentiment analysis, and the chatbot's reply. |
+     | GET | /api/welcome_message | Retrieves the chatbot's welcome message. |
+     | GET | /api/negative_intent_response| Retrieves the chatbot's response to negative intents. |
+
+3. **Interacting with the Chatbot**:
+
    - With the original intents.json and messages.json files, users can type messages or questions related to the bakery's products, services, or any other inquiries.
    - The chatbot responds accordingly, providing relevant information or assistance.
 
-3. **Ending the Chat**:
+4. **Ending the Chat**:
    - To conclude the conversation, simply type "goodbye" or any other exit keyword as defined in the intents.
-      - If there is a "goodbye" intent on the intents.json file, the bot detects it and stops the application.
+     - If there is a "goodbye" intent on the intents.json file, the bot detects it and stops the application.
 
 ## Use Example
 
-The bot will analyze the intents of the user's message and respond accordingly
+The bot will analyze the intents of the user's message and respond accordingly. Intent recognition and response generation are implemented using NLTK and TensorFlow.
 
 Example:
 
-```bash
+```
 Welcome to our bakery chatbot! 🍰🍩 I'm here to assist you with any questions you have about our delicious treats and services. Feel free to ask me anything, from information about our products to placing an order. Let's get started! How can I assist you today?
 You: hello! what are your cake options?
 Bot: Our cake selection includes flavors like chocolate, vanilla, red velvet, carrot, and lemon drizzle. Feel free to ask for more details or suggestions!
@@ -91,23 +105,9 @@ print("Sentiment:", sentiment)  # "Sentiment: Positive
 
 ## Personalizing the Bot
 
-- The chatbot's behavior and responses can be personalized to suit different contexts or businesses. This customization primarily depends on the contents of the `intents.json` file. By modifying or adding intents and their corresponding patterns and responses in the `intents.json` file, the chatbot can be adapted to their specific requirements and industry domain.
+- The chatbot's behavior and responses can be personalized to suit different contexts or businesses. This customization primarily depends on the contents of the `intents.json` and `messages.json` files on the `personalization_files` folder. By modifying or adding intents and their corresponding patterns and messages in those files, the chatbot can be adapted to their specific requirements and industry domain.
 - You may also modify the chatbot's actions depending on the intent or the sentiment of the user's sentence. For example, if the user wants to make an order, the bot can start an order making process instead of just showing a message.
 
-## Libraries and Technologies Used
-
-- **TensorFlow**: Used for building and training the neural network model for intent classification.
-- **spaCy**: Utilized for tokenization and natural language processing tasks.
-- **VADER Sentiment Analysis**: Integrated for sentiment analysis of user inputs.
-- **TextBlob**: Employed for spell checking functionality.
-
-## Thanks to Resources
-
-This project was made possible because of some awesome content I used to learn about NLP techniques and to build this project. A big thank you for the following resourcers and creators:
-
-- **"Natural Language Processing (NLP) Tutorial with Python & NLTK"**: Instructed by Edureka on freecodecamp's YouTube channel. Available at [this link](https://www.youtube.com/watch?v=X2vAabgKiuM&t=1s).
-- **"Intelligent AI Chatbot in Python"**: Created by NeuralNine. Available on YouTube at [this link](https://www.youtube.com/watch?v=1lwddP0KUEg&t=1522s).
-- **"What is Sentiment Analysis?"**: On aws.amazon.com, available at [this link](https://aws.amazon.com/what-is/sentiment-analysis/?nc1=h_ls).
-
 ## Contributions and Suggestions
-Suggestions for improvements or additional features are much appreciated! Contributions to the project are also welcomed. Please feel free to fork the repository, make changes, and submit pull requests.
+
+Feel free to explore the repository and share your thoughts! Suggestions for improvements or additional features are much appreciated.
