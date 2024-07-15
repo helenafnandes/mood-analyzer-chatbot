@@ -62,8 +62,8 @@ class Chatbot:
 
     def predict_top_intent(self, sentence):
         bow = self.bag_of_words(sentence)
-        bow = np.array(bow)  # Convert list to numpy array
-        res = self.model.predict(np.array([bow]))[0]  # Ensure input is in correct format
+        bow = np.array(bow)
+        res = self.model.predict(np.array([bow]))[0]
         results = [[i, r] for i, r in enumerate(res)]
         results.sort(key=lambda x: x[1], reverse=True)
         if results[0][1] > self.ERROR_THRESHOLD:
