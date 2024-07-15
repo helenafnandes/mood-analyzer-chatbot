@@ -41,6 +41,7 @@ def suggest_conversational(word):
         "could": "could",
         "What's": "What's",
         "What": "What",
+        "adres": "address"
         # Add more conversational word suggestions as needed
     }
 
