@@ -25,7 +25,7 @@ class Chatbot:
         self.CLASSES_FILE = './training_generated_files/allIntentsTags.pkl'
         self.MODEL_FILE = './training_generated_files/chatbot_model.keras'
         self.MESSAGES_FILE = 'personalization_files/messages.json'
-        self.ERROR_THRESHOLD = 0.60
+        self.ERROR_THRESHOLD = 0.65
         self.lemmatizer = WordNetLemmatizer()
         self.words = None
         self.classes = None
