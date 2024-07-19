@@ -16,7 +16,8 @@ This project implements a chatbot tailored for a bakery, capable of engaging in 
 
 ### Live Demonstration
 
-You can experience the chatbot through a live web application by following this [link](#).
+You can experience the chatbot through a live web application by following this [link](https://chatbot-webapp-one.vercel.app/).
+The source code for the web app can be found [here](https://github.com/helenafnandes/chatbot-webapp)
 
 ### Local Installation
 
