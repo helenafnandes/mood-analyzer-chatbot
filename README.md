@@ -21,26 +21,44 @@ The source code for the web app can be found [here](https://github.com/helenafna
 
 ## Local Installation
 
-To run the chatbot on your own machine, clone this repository and set it up locally:
+To run the chatbot on your own machine, follow these steps:
 
-```bash
+1. **Clone the Repository**:
+
+```
 git clone https://github.com/helenafnandes/mood-analyzer-chatter-bot.git
+cd mood-analyzer-chatter-bot
 ```
 
-Then, follow these instructions:
+2. **Set Up the Environment**:
 
-0. **Optional: Personalizing and Training the Chatbot**
+Ensure you have Python 3.11 installed. Install the necessary dependencies using the requirements.txt file:
 
-   - This step is optional. The bot can be run without personalization, and it will function with its pre-trained responses related to a bakery.
-   - **Personalization**: To tailor the chatbot to a specific context, modify the contents of the `intents.json` and `messages.json` files located in the `personalization_files` directory.
-   - **Training**: After personalization, execute the `training.py` script to train the neural network with the updated data.
+```
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+pip install -r requirements.txt
+```
 
-1. **Running the Chatbot Locally**:
+3. **Optional: Personalizing and Training the Chatbot**:
 
-   - Launch the chatbot by running the `chatbot.py` script.
-   - Upon initialization, the chatbot greets the user and awaits input.
+- This step is optional. The bot can be run without personalization, and it will function with its pre-trained responses related to a bakery.
+- Personalization: To tailor the chatbot to a specific context, modify the contents of the intents.json and messages.json files located in the personalization_files directory.
+- Training: After personalization, execute the training.py script to train the neural network with the updated data.
 
-2. **Running the Chatbot via Flask API**:
+```
+python training.py
+```
+
+4. **Running the Chatbot Locally**:
+
+Launch the chatbot by running the chatbot.py script:
+
+```
+python chatbot.py
+```
+
+5. **Running the Chatbot via Flask API**:
 
    - Launch the Flask API by running the `app.py` script.
    - The API provides the following endpoints:
@@ -50,12 +68,12 @@ Then, follow these instructions:
      | GET | /api/welcome_message | Retrieves the chatbot's welcome message. |
      | GET | /api/negative_intent_response| Retrieves the chatbot's response to negative intents. |
 
-3. **Interacting with the Chatbot**:
+6. **Interacting with the Chatbot**:
 
    - With the original intents.json and messages.json files, users can type messages or questions related to the bakery's products, services, or any other inquiries.
    - The chatbot responds accordingly, providing relevant information or assistance.
 
-4. **Ending the Chat**:
+7. **Ending the Chat**:
    - To conclude the conversation, simply type "goodbye" or any other exit keyword as defined in the intents.
      - If there is a "goodbye" intent on the intents.json file, the bot detects it and stops the application.
 
