@@ -2,28 +2,26 @@
 
 This project implements a chatbot tailored for a bakery, capable of engaging in conversation with users to provide information about the bakery's products and services, as well as assist with placing orders. The chatbot utilizes several natural language processing (NLP) techniques including spell checking and sentiment analysis to enhance user experience and interaction quality.
 
+The chatbot is powered by a neural network built with TensorFlow, trained using a JSON file containing specific intents. These intents represent different conversation patterns and associated responses. The neural network has been trained to classify these intents, enabling the chatbot to understand and appropriately respond to user messages.
+
+## Live Demonstration
+
+You can experience the chatbot through a live web application by following this [link](https://chatbot-webapp-one.vercel.app/).
+The source code for the web app can be found [here](https://github.com/helenafnandes/chatbot-webapp)
+
 ## Functionalities
 
 1. ✅**Spell Checking**: The chatbot corrects spelling errors in user input to improve understanding and ensure accurate responses.
 
 2. ✅**Sentiment Analysis**: Integrated sentiment analysis allows the chatbot to gauge the sentiment of user inputs. In case of negative sentiment, appropriate actions are taken to address the user's concern and escalate it to the bakery staff if needed.
 
-3. ✅**Web-Based Interface for Tests**: A user-friendly web interface enabling easy viewing and testing of the chatbot.
+3. ✅**Web-Based Interface for Tests**: A [user-friendly web interface](https://chatbot-webapp-one.vercel.app/) enabling easy viewing and testing of the chatbot.
 
 4. 🔳**Enhanced Spell Checking**: Implement spell checking functionality that leverages keyboard configuration for improved accuracy and efficiency.
 
-## How to Use
+## Local Installation
 
-### Live Demonstration
-
-You can experience the chatbot through a live web application by following this [link](https://chatbot-webapp-one.vercel.app/).
-The source code for the web app can be found [here](https://github.com/helenafnandes/chatbot-webapp)
-
-### Local Installation
-
-If you prefer to run the chatbot on your own machine, you can download the chatbot folder and set it up locally.
-
-To download the necessary files, run the following command in your terminal:
+To run the chatbot on your own machine, clone this repository and set it up locally:
 
 ```bash
 git clone https://github.com/helenafnandes/mood-analyzer-chatter-bot.git
@@ -33,9 +31,9 @@ Then, follow these instructions:
 
 0. **Optional: Personalizing and Training the Chatbot**
 
-   - This step is optional. You can run the bot without personalization, and it will function with its pre-trained responses related to a bakery.
-   - **Personalization**: To tailor the chatbot to your specific context, modify the contents of the `intents.json` and `messages.json` files located in the `personalization_files` directory.
-   - **Training**: After personalization, execute the `training.py` script to train the chatbot with the updated data.
+   - This step is optional. The bot can be run without personalization, and it will function with its pre-trained responses related to a bakery.
+   - **Personalization**: To tailor the chatbot to a specific context, modify the contents of the `intents.json` and `messages.json` files located in the `personalization_files` directory.
+   - **Training**: After personalization, execute the `training.py` script to train the neural network with the updated data.
 
 1. **Running the Chatbot Locally**:
 
@@ -75,7 +73,7 @@ You: awesome, thanks
 Bot: No problem at all! We're here to help if you have any other questions or need suggestions.
 ```
 
-## Spell Checking
+### Spell Checking
 
 The spell checking functionality is implemented in the `spell_corrector.py` module using TextBlob. It corrects spelling errors in user input, ensuring better comprehension by the chatbot.
 
@@ -90,7 +88,7 @@ print("Corrected text:")
 print(corrected_text)  # "i want to order a can"
 ```
 
-## Sentiment Analysis
+### Sentiment Analysis
 
 Sentiment analysis is performed using spaCy and VADER (Valence Aware Dictionary and sEntiment Reasoner). It allows the chatbot to detect the sentiment of user inputs and take appropriate actions, such as addressing negative sentiment.
 
