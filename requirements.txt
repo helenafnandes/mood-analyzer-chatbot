@@ -1,0 +1,11 @@
+Flask==3.0.3
+flask-cors==3.0.10
+nltk==3.8.1
+tensorflow==2.16.1
+textblob==0.18.0.post0
+vaderSentiment==3.3.2
+gunicorn==20.1.0
+numpy==1.26.4
+spacy==3.7.4
+spacy-legacy==3.0.12
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl#sha256=86cc141f63942d4b2c5fcee06630fd6f904788d2f0ab005cce45aadb8fb73889
