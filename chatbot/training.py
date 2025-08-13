@@ -6,6 +6,9 @@ import tensorflow as tf
 import nltk
 from nltk.stem import WordNetLemmatizer
 
+nltk.download("punkt_tab")
+nltk.download("punkt")
+nltk.download("wordnet")
 
 # Constants
 INTENTS_FILE = '../personalization_files/intents.json'

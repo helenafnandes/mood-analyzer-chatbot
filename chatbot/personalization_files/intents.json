@@ -1,0 +1,292 @@
+{
+  "intents": [
+    {
+      "tag": "greetings",
+      "patterns": [
+        "hello",
+        "hey",
+        "hi",
+        "good day",
+        "what's up",
+        "how are you"
+      ],
+      "responses": [
+        "Hello! How can I help you with your bakery needs today?",
+        "Hey there! Welcome to our bakery! What can I do for you?",
+        "Welcome to our bakery! How can I assist you today?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "goodbye",
+        "bye",
+        "see you later",
+        "exit",
+        "stop"
+      ],
+      "responses": [
+        "Goodbye! Have a wonderful day!",
+        "See you later! We hope you enjoy our treats and have a great day!"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thank you",
+        "thanks lot",
+        "much appreciated",
+        "thanks"
+      ],
+      "responses": [
+        "You're welcome! If you have any more questions or need a recommendation for our cakes, feel free to ask.",
+        "No problem at all! We're here to help if you have any other questions or need suggestions."
+      ]
+    },
+    {
+      "tag": "about_bot",
+      "patterns": [
+        "what is bot?",
+        "who are you?",
+        "what do?",
+        "tell me about yourself",
+        "what can you do?",
+        "help me"
+      ],
+      "responses": [
+        "I'm a virtual assistant here to help you with information about our bakery, our menu, and placing orders. How can I assist you today?",
+        "I'm your bakery bot, here to answer your questions about our products, help you place orders, and provide recommendations. How can I help?"
+      ]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "how can I contact you?",
+        "what are your contact details?",
+        "how do I get in touch?",
+        "contact information"
+      ],
+      "responses": [
+        "You can reach us through our website at www.yummybakery.com, follow us on Instagram @yummybakery, call us at (555) 123-4567, or message us on WhatsApp at (555) 987-6543. How can we assist you today?",
+        "Our contact details are: Website: www.yummybakery.com, Instagram: @yummybakery, Phone: (555) 123-4567, WhatsApp: (555) 987-6543. Feel free to reach out to us!"
+      ]
+    },
+    {
+      "tag": "hours",
+      "patterns": [
+        "what are your hours?",
+        "when are you open?",
+        "what time do you close?",
+        "business hours"
+      ],
+      "responses": [
+        "We're open from 8 AM to 8 PM every day. We look forward to seeing you and serving you our delicious pastries and cakes!",
+        "Our bakery is open daily from 8 AM to 8 PM. Come visit us anytime to enjoy our freshly baked goods!"
+      ]
+    },
+    {
+      "tag": "location",
+      "patterns": [
+        "where are you located?",
+        "what's your address?",
+        "how do I find you?",
+        "location"
+      ],
+      "responses": [
+        "Our bakery is located at 123 Sweet Street, Dessertland. You can find us easily on the map and enjoy our wide selection of cakes and pastries.",
+        "We're located at 123 Sweet Tooth Lane, Dessertville. Come by to enjoy our delicious treats!"
+      ]
+    },
+    {
+      "tag": "jokes",
+      "patterns": [
+        "tell me a joke",
+        "make me laugh",
+        "joke",
+        "something funny"
+      ],
+      "responses": [
+        "Why did the baker go to jail? Because he was caught beating an egg!",
+        "Did you hear about the angry pancake? He just flipped!",
+        "What kind of cake do ghosts choose for their birthday? I-scream cake!",
+        "How do you make a lemon drop? Just let it fall!",
+        "What is the baker's favorite TV show? Breaking Bread!"
+      ]
+    },
+    {
+      "tag": "curiosities",
+      "patterns": [
+        "tell me a fun fact",
+        "tell me a curiosity",
+        "know any interesting facts?",
+        "interesting facts",
+        "curiosities",
+        "fun fact"
+      ],
+      "responses": [
+        "Did you know that the world's largest gingerbread man weighs over 1,400 pounds?",
+        "The origin of the croissant dates back to the 17th century in Austria!",
+        "Sliced bread was first sold in 1928, and it was advertised as 'the best thing since bagged bread!'",
+        "In ancient Egypt, baking was so important that bakers were often highly regarded and had their own dedicated gods."
+      ]
+    },
+    {
+      "tag": "menu",
+      "patterns": [
+        "what do you offer?",
+        "what's on the menu?",
+        "do you have any specialties?",
+        "what do you sell",
+        "sell",
+        "menu",
+        "specialties"
+      ],
+      "responses": [
+        "We offer a variety of delicious baked goods including bread, pastries, cakes, cookies, and more. Our specialties include chocolate lava cakes, matcha green tea cupcakes, and lemon meringue pies. Feel free to explore our menu!",
+        "Our menu features a wide range of treats such as almond croissants, blueberry muffins, and our famous tiramisu. Feel free to explore our offerings!"
+      ]
+    },
+    {
+      "tag": "order",
+      "patterns": [
+        "I'd like to place an order",
+        "how can I order?",
+        "can I order online?",
+        "order",
+        "place an order"
+      ],
+      "responses": [
+        "Sure! You can place an order by visiting our website or giving us a call. Let me know if you need any assistance.",
+        "Absolutely! Ordering is easy through our website, or you can call us directly. Let us know how we can help!"
+      ]
+    },
+    {
+      "tag": "specials",
+      "patterns": [
+        "do you have any specials?",
+        "what's on special today?",
+        "any discounts or promotions?",
+        "specials",
+        "promotions"
+      ],
+      "responses": [
+        "Yes, we have daily specials and promotions. Today's special includes our chocolate fudge brownies and a discount on our strawberry shortcake. Please check our website or social media for the latest updates.",
+        "We sure do! Today we're featuring our coconut macaroons and offering a discount on our lemon bars. Stay updated by visiting our website or following us on social media."
+      ]
+    },
+    {
+      "tag": "favorite_bakery_item",
+      "patterns": [
+        "what's your favorite bakery item?",
+        "do you have a favorite pastry?",
+        "what do you like the most here?",
+        "favorite bakery item",
+        "favorite pastry"
+      ],
+      "responses": [
+        "I don't eat, but our customers love the chocolate croissants and red velvet cupcakes!",
+        "While I don't have taste buds, our chocolate croissants and red velvet cupcakes are big hits among our customers."
+      ]
+    },
+    {
+      "tag": "recommendations",
+      "patterns": [
+        "what do you recommend?",
+        "can you recommend something?",
+        "what's popular here?",
+        "recommendations",
+        "popular items"
+      ],
+      "responses": [
+        "I recommend trying our freshly baked sourdough bread or our signature chocolate cake! Our fruit tarts are also a big hit.",
+        "You might enjoy our freshly baked sourdough bread or our rich chocolate cake. Our fruit tarts are also very popular!"
+      ]
+    },
+    {
+      "tag": "cake_options",
+      "patterns": [
+        "what types of cakes do you offer?",
+        "do you have cake options?",
+        "can I see your cake selection?",
+        "cake options",
+        "cake selection",
+        "cake",
+        "menu of cakes cake"
+      ],
+      "responses": [
+        "We offer a variety of cakes, including chocolate, vanilla, red velvet, carrot, lemon drizzle, and more. Let me know if you'd like to see our full cake menu or need a recommendation.",
+        "Our cake selection includes flavors like chocolate, vanilla, red velvet, carrot, and lemon drizzle. Feel free to ask for more details or suggestions!"
+      ]
+    },
+    {
+      "tag": "custom_cake",
+      "patterns": [
+        "can I customize a cake?",
+        "do you make custom cakes?",
+        "can I request a special cake design?",
+        "custom cake",
+        "special cake design"
+      ],
+      "responses": [
+        "Yes, we offer custom cake designs! Whether you want a unicorn-themed birthday cake or a sophisticated wedding cake, let us know your preferences, and we'll create a unique cake just for you.",
+        "Absolutely! We can create custom cakes for any occasion. Share your ideas with us, and we'll make a cake that's perfect for your celebration."
+      ]
+    },
+    {
+      "tag": "cake_order_process",
+      "patterns": [
+        "how do I order a cake?",
+        "what's the process for ordering a cake?",
+        "can I order a cake online?",
+        "cake order process",
+        "order a cake"
+      ],
+      "responses": [
+        "To order a cake, you can visit our website and fill out the cake order form, or you can call us directly to place your order.",
+        "Ordering a cake is simple! You can use our online order form or call us. Choose from our delicious flavors such as chocolate truffle, vanilla bean, and raspberry swirl."
+      ]
+    },
+    {
+      "tag": "cake_delivery",
+      "patterns": [
+        "do you offer cake delivery?",
+        "can I have the cake delivered?",
+        "what's your delivery policy?",
+        "cake delivery",
+        "delivery policy"
+      ],
+      "responses": [
+        "Yes, we offer cake delivery services. Delivery fees may apply depending on the distance. Please provide your location, and we'll deliver your favorite cakes, such as our rich chocolate ganache cake or our moist carrot cake.",
+        "We do provide cake delivery! Fees depend on your location. Share your address with us, and we'll bring you our delectable cakes like the chocolate ganache or moist carrot cake."
+      ]
+    },
+    {
+      "tag": "cake_pickup",
+      "patterns": [
+        "can I pick up the cake myself?",
+        "is cake pickup available?",
+        "what are the pickup options?",
+        "cake pickup",
+        "pickup options"
+      ],
+      "responses": [
+        "Certainly! You can pick up the cake yourself at our bakery. Just let us know your preferred pickup date and time. We recommend trying our freshly baked lemon poppy seed cake!",
+        "Yes, you can pick up your cake from our bakery. Let us know when you'd like to come by. Don't miss our lemon poppy seed cake!"
+      ]
+    },
+    {
+      "tag": "cake_price",
+      "patterns": [
+        "how much does a cake cost?",
+        "what are your prices?",
+        "can I get a price estimate for a cake?",
+        "price",
+        "price estimate for a cake"
+      ],
+      "responses": [
+        "Cake prices vary depending on size, flavor, and design. For instance, our classic chocolate cake starts at $25, while custom designs are priced based on complexity. Please contact us for a personalized price quote.",
+        "Our cake prices depend on the size, flavor, and design. A basic chocolate cake starts at $25. Custom cakes are priced based on design complexity. Contact us for a detailed quote."
+      ]
+    }
+  ]
+}
